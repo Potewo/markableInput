@@ -7,12 +7,24 @@
 </head>
 
 <body>
-  <p contenteditable="true">Hello<span>Hi</span></p>
+  <p id="inp" contenteditable="true">Hello<span>Hi</span></p>
   <style>
     span {
       color: red;
     }
   </style>
+  <script>
+    let i = document.getElementById("inp");
+    i.addEventListener("input", reload);
+    function reload() {
+      let s = i.innerHTML;
+      let deletedS = s.replace(/(<span>|<\/span>)/g, "");
+      i.innerHTML = deletedS;
+      let replacedS = deletedS.replace(/Hi/g, "<span>Hi</span>");
+      i.innerHTML = replacedS;
+    }
+    reload();
+  </script>
 </body>
 
 </html>
